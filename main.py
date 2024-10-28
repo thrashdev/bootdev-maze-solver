@@ -1,13 +1,20 @@
-from geometry import Line, Point
+from geometry import Cell, Line, Point
 from window import Window
+from maze import Maze
+
 
 
 def main():
-    win = Window(800,600)
-    l1 = Line(Point(100, 100), Point(200, 200))
-    l2 = Line(Point(400, 200), Point(0, 100))
-    win.draw_line(l1, "red")
-    win.draw_line(l2, "blue")
+    screen_x = 800
+    screen_y = 600
+    margin = 50
+    num_rows = 12
+    num_cols = 16
+    cell_size_x = (screen_x - 2*margin) / num_cols
+    cell_size_y = (screen_y - 2*margin) / num_rows
+    win = Window(screen_x, screen_y)
+    maze = Maze(margin,margin,num_rows,num_cols,cell_size_x,cell_size_y,win, seed=0)   
+    maze.solve()
     win.wait_for_close()
 
 
